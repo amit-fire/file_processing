@@ -77,7 +77,8 @@ Logging:
 System.out.println is used for logging. In a production code, a proper logging mechanism (log4j, slf4j, etc) would be used.
 Additional logs would be useful for a production code.
 
-Run the application: see run application.docx
-Output
+Running the application: see run application.docx
+
+Output:
 1. various png files
 2. large_file_output.docx

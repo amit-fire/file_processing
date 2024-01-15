@@ -74,7 +74,8 @@ Messages have not be externalized.
 Constants such as batch size, buffer size, log dir are hard coded. for a production project, they would have been read from a config file.
 
 Logging:
-System.out.println is used for logging. In a production code, a proper logging mechanism (log4j, slf4j, etc) would be used.
+Some messages are logged via log4j2.
+Some messages are logged via System.out.println (would be logged via log4j2 in production).
 Additional logs would be useful for a production code.
 
 Running the application: see run application.docx

@@ -74,7 +74,7 @@ Messages have not be externalized.
 Constants such as batch size, buffer size, log dir are hard coded. for a production project, they would have been read from a config file.
 
 Logging:
-Some messages are logged via log4j2.
+Some messages are logged via log4j2. log location: <file_processing_app_folder>/logs/app.log
 Some messages are logged via System.out.println (would be logged via log4j2 in production).
 Additional logs would be useful for a production code.
 

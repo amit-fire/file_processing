@@ -12,11 +12,10 @@ import com.file_processing.tail.Tail;
 public class FileProcessingServiceTest {
 
 	File filesDir = new File("src/test/resources/files");
-	String filesDirPath = filesDir.getAbsolutePath();
+	String filesDirPath = filesDir.getAbsolutePath() + File.separator;
 	String fileName = "file.txt";
 
-	Tail t = new Tail();
-	FileProcessingService fileProcessing = new FileProcessingService(t, filesDirPath);
+	FileProcessingService fileProcessing = new FileProcessingService(new Tail(), filesDirPath);
 
 	@Test
 	public void testReadEntireFile() throws IOException {

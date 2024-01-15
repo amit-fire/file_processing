@@ -8,8 +8,8 @@ import java.util.Random;
 public class GenerateFile {
 
 	public static void main(String[] args) {
-		String f = "output file path";
-		long fileSize = 0;
+		String f = "/root/q.txt";
+		long fileSize = 200;
 		// fileSize=2000000000 to generate 3GB file
 		write(f, fileSize);
 	}

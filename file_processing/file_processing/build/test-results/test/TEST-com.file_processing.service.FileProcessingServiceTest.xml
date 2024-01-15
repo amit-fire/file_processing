@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.file_processing.service.FileProcessingServiceTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-01-15T00:24:48" hostname="T420" time="3.661">
+  <properties/>
+  <testcase name="testReadEntireFile()" classname="com.file_processing.service.FileProcessingServiceTest" time="3.469"/>
+  <testcase name="testNumberOfLinesToReadIsLargerThanLChunkSize()" classname="com.file_processing.service.FileProcessingServiceTest" time="0.046"/>
+  <testcase name="testNumberOfLinesToReadIsSmallerThanChunkSize()" classname="com.file_processing.service.FileProcessingServiceTest" time="0.014"/>
+  <testcase name="testSearchText()" classname="com.file_processing.service.FileProcessingServiceTest" time="0.024"/>
+  <testcase name="testEmptyFile()" classname="com.file_processing.service.FileProcessingServiceTest" time="0.027"/>
+  <testcase name="testNumberOfLinesToReadIsLargerThanLChunkSizeButSmallerThanLinesInFile()" classname="com.file_processing.service.FileProcessingServiceTest" time="0.034"/>
+  <system-out><![CDATA[collecting entries for file file.txt
+details1: entries = 10
+collecting entries for file file.txt
+details1: entries = 10
+collecting entries for file file.txt
+details1: entries = 3
+collecting entries for file file.txt
+details1: entries = 3
+collecting entries for file empty.txt
+details1: entries = 0
+collecting entries for file file.txt
+details1: entries = 10
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\User\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.10\90ed94ac044ea8953b224304c762316e91fd6b31\byte-buddy-agent-1.14.10.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

@@ -12,14 +12,18 @@ import java.nio.file.InvalidPathException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Tail {
 
+	private static Logger logger = LoggerFactory.getLogger(Tail.class);
+
 	private static final int DEFAULT_BUFFER_SIZE = 1; // TODO: externalize
 	private static final String DEFAULT_CHARSET = "UTF-8";
-	private static final char NEW_LINE = 13;
+	private static final char NEW_LINE = 10;
 
 	/**
 	 * Read a number of lines from bottom of file
@@ -128,10 +132,17 @@ public class Tail {
 		 * 2. handle matching strings
 		 */
 		s = s.strip();
-		if (!s.isEmpty() && (stringToFind == null || stringToFind.isEmpty()
-				|| (!stringToFind.isEmpty() && s.contains(stringToFind)))) {
+
+		boolean addLine = shouldLineBeAdded(s, stringToFind);
+		logger.info("add line '" + s + "' ? " + addLine);
+		if (addLine) {
 			lines.add(s);
 		}
+	}
+
+	private boolean shouldLineBeAdded(String s, String stringToFind) {
+		return !s.isEmpty() && (stringToFind == null || stringToFind.isEmpty()
+				|| (!stringToFind.isEmpty() && s.contains(stringToFind)));
 	}
 
 	private void prependBuffer(ByteArrayOutputStream out, byte[] bytes, int offset, int limit) throws IOException {

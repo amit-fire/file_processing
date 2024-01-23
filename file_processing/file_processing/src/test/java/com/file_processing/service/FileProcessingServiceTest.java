@@ -30,7 +30,7 @@ public class FileProcessingServiceTest {
 	}
 
 	@Test
-	public void testNumberOfLinesToReadIsLargerThanLChunkSize() throws IOException {
+	public void testNumberOfLinesToReadIsLargerThanChunkSize() throws IOException {
 		List<String> entries = fileProcessing.getEntries(fileName, 123, "");
 		Assertions.assertEquals(28, entries.size());
 	}
@@ -48,7 +48,7 @@ public class FileProcessingServiceTest {
 	}
 
 	@Test
-	public void testNumberOfLinesToReadIsLargerThanLChunkSizeButSmallerThanLinesInFile() throws IOException {
+	public void testNumberOfLinesToReadIsLargerThanChunkSizeButSmallerThanLinesInFile() throws IOException {
 		List<String> entries = fileProcessing.getEntries(fileName, 23, "");
 		Assertions.assertEquals(23, entries.size());
 	}

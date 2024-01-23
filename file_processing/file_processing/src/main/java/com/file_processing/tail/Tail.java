@@ -22,12 +22,11 @@ public class Tail {
 
 	private static Logger logger = LoggerFactory.getLogger(Tail.class);
 
-	//private static final int DEFAULT_BUFFER_SIZE = 1; // TODO: externalize
 	private static final String DEFAULT_CHARSET = "UTF-8";
 	private static final char NEW_LINE = 10;
 
 	@Value("${buffer_size}")
-	private int defaultBufferSize;
+	private int defaultBufferSize = 1;
 
 	/**
 	 * Read a number of lines from bottom of file

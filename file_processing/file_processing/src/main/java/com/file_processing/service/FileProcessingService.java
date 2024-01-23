@@ -7,9 +7,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.file_processing.FileProcessingConstants;
 import com.file_processing.tail.ReadDetails;
 import com.file_processing.tail.Tail;
 
@@ -19,12 +19,16 @@ public class FileProcessingService {
 	private static Logger logger = LoggerFactory.getLogger(FileProcessingService.class);
 
 	private Tail tail;
+
+	@Value("${log_dir}")
 	private String logDir;
+
+	@Value("${number_of_lines_to_read}")
+	private int numberOfLinesToRead = 10;
 
 	@Autowired
 	FileProcessingService(Tail tail) {
 		this.tail = tail;
-		logDir = FileProcessingConstants.LOG_DIR;
 	}
 
 	// for testing
@@ -38,8 +42,8 @@ public class FileProcessingService {
 		Integer remainingNumberOfEntriesToRead = numberOfEntries;
 		int numberOfLinesToRead = calculateNumberOfLinesToRead(numberOfEntries);
 
-		logger.info("file: " + fileName + " numberOfEntries: " + numberOfEntries
-				+ " numberOfLinesToRead: " + numberOfLinesToRead);
+		logger.info("file: " + fileName + " numberOfEntries: " + numberOfEntries + " numberOfLinesToRead: "
+				+ numberOfLinesToRead);
 
 		String filePath = logDir + fileName;
 		ReadDetails details = tail.readLines(filePath, numberOfLinesToRead, stringToFind, 0);
@@ -118,7 +122,6 @@ public class FileProcessingService {
 	 * request originated) and the service sends the data in batches.
 	 */
 	private int calculateNumberOfLinesToRead(Integer numberOfEntries) {
-		int numberOfLinesToRead = FileProcessingConstants.NUMBER_OF_LINES_TO_READ;
 		if (numberOfEntries != null && numberOfEntries > 0) {
 			if (numberOfEntries > numberOfLinesToRead) {
 				numberOfEntries = numberOfLinesToRead;

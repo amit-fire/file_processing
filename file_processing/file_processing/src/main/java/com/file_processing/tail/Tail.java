@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,9 +22,12 @@ public class Tail {
 
 	private static Logger logger = LoggerFactory.getLogger(Tail.class);
 
-	private static final int DEFAULT_BUFFER_SIZE = 1; // TODO: externalize
+	//private static final int DEFAULT_BUFFER_SIZE = 1; // TODO: externalize
 	private static final String DEFAULT_CHARSET = "UTF-8";
 	private static final char NEW_LINE = 10;
+
+	@Value("${buffer_size}")
+	private int defaultBufferSize;
 
 	/**
 	 * Read a number of lines from bottom of file
@@ -52,7 +56,7 @@ public class Tail {
 			return new ReadDetails(lines, readBytes);
 		}
 
-		int bufferSize = DEFAULT_BUFFER_SIZE;
+		int bufferSize = defaultBufferSize;
 		long position;
 		ByteBuffer copy;
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -93,6 +97,7 @@ public class Tail {
 		for (int i = bytes.length - 1; i >= 0 && lines.size() < numberOfLines; i--) {
 			byte b = bytes[i];
 			if (b == NEW_LINE) {
+				logger.info("flush ***" + b + "***");
 				flush = true;
 			} else {
 				offset = i;
